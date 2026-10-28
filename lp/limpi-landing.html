@@ -1,0 +1,205 @@
+<!-- Landing page do Limpi para o WordPress (bloco "HTML personalizado"). Tudo fica dentro de .limpi-lp. -->
+<style>
+  /* Página limpa: esconde o cabeçalho do tema só nesta página. */
+  body:has(.limpi-lp) .site-header, body:has(.limpi-lp) .site-footer, body:has(.limpi-lp) .page-content > h1 { display: none !important; }
+  body:has(.limpi-lp) main.site-main { max-width: none !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
+  body:has(.limpi-lp) .page-content { max-width: none !important; padding: 0 !important; margin: 0 !important; background: none !important; box-shadow: none !important; border-radius: 0 !important; }
+
+  .limpi-lp { --p: #0DB89E; --pd: #088577; --ink: #121C33; --muted: #5B6475; --soft: #EEF8F6; --blue: #1C73D9;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .limpi-lp * { box-sizing: border-box; }
+  .limpi-lp img { max-width: 100%; height: auto; display: block; }
+  .limpi-lp a { text-decoration: none; }
+  .limpi-lp .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  .limpi-lp .hero { background: radial-gradient(120% 90% at 50% 0%, #2AD3B8 0%, #0DB89E 45%, #1C73D9 120%); color: #fff; padding: 56px 0 0; overflow: hidden; }
+  .limpi-lp .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: end; }
+  .limpi-lp .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; }
+  .limpi-lp .brand img { width: 52px; height: 52px; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .limpi-lp h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.05; letter-spacing: -1.5px; margin: 24px 0 14px; font-weight: 900; color: #fff; }
+  .limpi-lp .lead { font-size: clamp(17px, 2.2vw, 21px); opacity: .95; max-width: 520px; margin: 0 0 26px; }
+  .limpi-lp .cta { display: inline-flex; align-items: center; gap: 12px; background: #000; color: #fff !important; border-radius: 16px; padding: 14px 26px; font-weight: 700; box-shadow: 0 10px 24px rgba(0,0,0,.25); transition: transform .15s; }
+  .limpi-lp .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .limpi-lp .final .ctas { justify-content: center; }
+  .limpi-lp .cta:hover { transform: translateY(-2px); }
+  .limpi-lp .cta svg { width: 30px; height: 30px; fill: #fff; }
+  .limpi-lp .cta small { display: block; font-size: 12px; font-weight: 500; opacity: .8; line-height: 1.1; }
+  .limpi-lp .cta span { font-size: 20px; line-height: 1.1; }
+  .limpi-lp .trust { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 22px 0 48px; font-size: 14px; opacity: .95; }
+  .limpi-lp .trust b { font-weight: 700; }
+  .limpi-lp .hero-shot { justify-self: center; width: min(320px, 100%); max-height: 520px; overflow: hidden; border-radius: 26px 26px 0 0; filter: drop-shadow(0 20px 40px rgba(0,40,60,.35)); }
+  .limpi-lp .hero-shot img { border-radius: 26px 26px 0 0; }
+
+  .limpi-lp section.block { padding: 64px 0; }
+  .limpi-lp h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -.8px; margin: 0 0 12px; text-align: center; font-weight: 850; color: var(--ink); }
+  .limpi-lp .sub { text-align: center; color: var(--muted); max-width: 620px; margin: 0 auto 36px; font-size: 18px; }
+
+  .limpi-lp .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .limpi-lp .feature { background: var(--soft); border-radius: 22px; padding: 24px; }
+  .limpi-lp .feature .ic { width: 48px; height: 48px; border-radius: 14px; background: #fff; display: grid; place-items: center; font-size: 24px; margin-bottom: 14px; }
+  .limpi-lp .feature h3 { font-size: 19px; margin: 0 0 6px; color: var(--ink); }
+  .limpi-lp .feature p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+  .limpi-lp .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 18px; }
+  .limpi-lp .shots img { width: 220px; flex: 0 0 auto; border-radius: 22px; scroll-snap-align: start; box-shadow: 0 10px 28px rgba(18,28,51,.15); }
+
+  .limpi-lp .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: s; }
+  .limpi-lp .step { border: 2px solid var(--soft); border-radius: 22px; padding: 24px; }
+  .limpi-lp .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--p); color: #fff; font-weight: 800; margin-bottom: 12px; }
+  .limpi-lp .step h3 { margin: 0 0 6px; font-size: 18px; color: var(--ink); }
+  .limpi-lp .step p { margin: 0; color: var(--muted); }
+
+  .limpi-lp .privacy { background: var(--ink); color: #fff; border-radius: 28px; padding: 40px; display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+  .limpi-lp .privacy .big { font-size: 64px; }
+  .limpi-lp .privacy h2 { text-align: left; color: #fff; margin-bottom: 8px; }
+  .limpi-lp .privacy p { margin: 0; opacity: .85; font-size: 17px; }
+
+  .limpi-lp .faq { max-width: 760px; margin: 0 auto; }
+  .limpi-lp details { border-bottom: 1px solid #E3E8EE; padding: 18px 4px; }
+  .limpi-lp summary { cursor: pointer; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .limpi-lp summary::-webkit-details-marker { display: none; }
+  .limpi-lp summary::after { content: "+"; color: var(--p); font-size: 24px; line-height: 1; }
+  .limpi-lp details[open] summary::after { content: "−"; }
+  .limpi-lp details p { margin: 10px 0 0; color: var(--muted); }
+
+  .limpi-lp .final { text-align: center; background: linear-gradient(135deg, #0DB89E, #1C73D9); color: #fff; border-radius: 28px; padding: 48px 24px; }
+  .limpi-lp .final h2 { color: #fff; }
+  .limpi-lp .final p { opacity: .92; margin: 0 0 24px; font-size: 18px; }
+  .limpi-lp .legal { text-align: center; color: var(--muted); font-size: 13px; padding: 28px 20px 40px; }
+  .limpi-lp .legal a { color: var(--muted); text-decoration: underline; }
+
+  .limpi-lp .sticky { display: none; }
+  @media (max-width: 820px) {
+    .limpi-lp .hero { padding-top: 36px; text-align: center; }
+    .limpi-lp .hero .wrap { grid-template-columns: 1fr; }
+    .limpi-lp .brand, .limpi-lp .trust, .limpi-lp .ctas { justify-content: center; }
+    .limpi-lp .lead { margin-left: auto; margin-right: auto; }
+    .limpi-lp .trust { margin-bottom: 32px; }
+    .limpi-lp .features, .limpi-lp .steps { grid-template-columns: 1fr; }
+    .limpi-lp .privacy { grid-template-columns: 1fr; text-align: center; padding: 32px 22px; }
+    .limpi-lp .privacy h2 { text-align: center; }
+    .limpi-lp section.block { padding: 48px 0; }
+    .limpi-lp .sticky { display: flex; gap: 8px; position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 9999; }
+    .limpi-lp .sticky .cta { flex: 1; justify-content: center; padding: 10px 8px; gap: 8px; border-radius: 14px; }
+    .limpi-lp .sticky .cta svg { width: 24px; height: 24px; }
+    .limpi-lp .sticky .cta span { font-size: 16px; }
+    .limpi-lp .sticky .cta small { font-size: 10px; }
+    .limpi-lp .legal { padding-bottom: 110px; }
+  }
+</style>
+
+<div class="limpi-lp">
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <div class="brand"><img src="https://douglas720.github.io/limpi-site/img/icone.png" alt="Ícone do Limpi" width="52" height="52">Limpi</div>
+        <h1>Seu celular sem “armazenamento cheio”</h1>
+        <p class="lead">O Limpi encontra fotos repetidas, prints esquecidos e vídeos pesados em segundos. Você revisa, apaga com um toque e libera espaço sem perder o que importa.</p>
+        <div class="ctas">
+          <a class="cta" href="https://apps.apple.com/app/id6827730238" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.72-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1-1.74.9-2.75-.86.03-1.91.58-2.53 1.3-.55.64-1.04 1.67-.91 2.66.96.07 1.94-.49 2.54-1.21z"/></svg>
+            <div><small>Baixar na</small><span>App Store</span></div>
+          </a>
+          <a class="cta" href="https://play.google.com/store/apps/details?id=me.joinads.limpi" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D7FE" d="M3.6 2.2c-.3.3-.4.7-.4 1.3v17c0 .6.1 1 .4 1.3l9.5-9.8z"/><path fill="#FFCE00" d="M16.3 15.3l-3.2-3.3 3.2-3.3 3.9 2.2c1.1.6 1.1 1.6 0 2.2z"/><path fill="#FF3A44" d="M16.3 15.3l-3.2-3.3-9.5 9.8c.4.4.9.4 1.6.1z"/><path fill="#00F076" d="M16.3 8.7L5.2 2.1c-.7-.3-1.2-.3-1.6.1l9.5 9.8z"/></svg>
+            <div><small>Disponível no</small><span>Google Play</span></div>
+          </a>
+        </div>
+        <div class="trust"><span>✓ <b>3 dias grátis</b></span><span>✓ Análise no próprio celular</span><span>✓ Nada é apagado sem você confirmar</span></div>
+      </div>
+      <div class="hero-shot"><img src="https://douglas720.github.io/limpi-site/img/tela-3.webp" alt="Tela do Limpi mostrando fotos duplicadas" width="600" height="1304"></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <h2>Tudo o que ocupa espaço, num só lugar</h2>
+      <p class="sub">O Limpi organiza a sua galeria e os seus contatos para você limpar em minutos, não em horas.</p>
+      <div class="features">
+        <div class="feature"><div class="ic">📸</div><h3>Fotos repetidas e parecidas</h3><p>Agrupa as fotos iguais e as sequências parecidas e sugere a melhor para manter.</p></div>
+        <div class="feature"><div class="ic">🎬</div><h3>Vídeos pesados</h3><p>Mostra primeiro os vídeos que mais ocupam espaço, e também os repetidos e as gravações de tela.</p></div>
+        <div class="feature"><div class="ic">🗜️</div><h3>Comprimir vídeos</h3><p>Diminui o tamanho dos vídeos mantendo uma boa qualidade, sem apagar nada.</p></div>
+        <div class="feature"><div class="ic">👆</div><h3>Deslize para limpar</h3><p>Revise a galeria como num jogo: esquerda apaga, direita mantém. Errou? É só desfazer.</p></div>
+        <div class="feature"><div class="ic">👥</div><h3>Contatos duplicados</h3><p>Junta contatos repetidos num só, com cópia de segurança antes de qualquer mudança.</p></div>
+        <div class="feature"><div class="ic">🔒</div><h3>Cofre secreto</h3><p>Guarde fotos e vídeos privados protegidos por PIN ou Face ID.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="background:#F7FAF9">
+    <div class="wrap">
+      <h2>Veja o Limpi por dentro</h2>
+      <p class="sub">Arraste para o lado para ver mais telas.</p>
+      <div class="shots">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-2.webp" alt="Otimize seu armazenamento" width="600" height="1304" loading="lazy">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-3.webp" alt="Apague fotos duplicadas" width="600" height="1304" loading="lazy">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-4.webp" alt="Deslize para limpar" width="600" height="1304" loading="lazy">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-5.webp" alt="Comprima vídeos" width="600" height="1304" loading="lazy">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-6.webp" alt="Junte contatos repetidos" width="600" height="1304" loading="lazy">
+        <img src="https://douglas720.github.io/limpi-site/img/tela-7.webp" alt="Cofre secreto" width="600" height="1304" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2>Como funciona</h2>
+      <p class="sub">Três passos e o seu celular respira de novo.</p>
+      <div class="steps">
+        <div class="step"><h3>Baixe e permita o acesso</h3><p>O Limpi analisa a galeria no próprio celular. Nada é enviado para servidores.</p></div>
+        <div class="step"><h3>Revise as sugestões</h3><p>Veja duplicadas, parecidas, prints e vídeos grandes, com a melhor foto já marcada.</p></div>
+        <div class="step"><h3>Limpe com um toque</h3><p>Confirme e pronto. Os itens ficam um tempo na lixeira da galeria, caso você mude de ideia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="privacy">
+        <div class="big">🛡️</div>
+        <div>
+          <h2>Suas fotos não saem do celular</h2>
+          <p>Toda a análise acontece no seu celular. O Limpi não envia suas fotos nem seus contatos para nenhum servidor, e nada é apagado sem a sua confirmação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:8px">
+    <div class="wrap faq">
+      <h2>Perguntas frequentes</h2>
+      <details><summary>O Limpi é grátis?</summary><p>Você baixa grátis e vê tudo o que pode ser limpo. Para apagar e usar todos os recursos, existe o Limpi Premium, com 3 dias de teste grátis no plano semanal. Dá para cancelar quando quiser na sua conta da App Store ou do Google Play.</p></details>
+      <details><summary>Posso perder fotos importantes?</summary><p>Não. Nada é apagado sem você confirmar, a melhor foto de cada grupo é mantida e tudo que você apaga fica um tempo na lixeira da galeria (no iPhone, 30 dias em “Apagados”).</p></details>
+      <details><summary>O espaço é liberado na hora?</summary><p>O espaço volta de vez quando a lixeira da galeria é esvaziada (no iPhone, o álbum “Apagados” do app Fotos). O Limpi mostra como fazer isso.</p></details>
+      <details><summary>Minhas fotos são enviadas para algum lugar?</summary><p>Não. A análise é feita no próprio celular, sem enviar fotos ou contatos para servidores.</p></details>
+      <details><summary>Funciona em qual celular?</summary><p>No iPhone, pela App Store, e no Android, pelo Google Play, com versões recentes do sistema. O app está em português, inglês, espanhol, francês e italiano.</p></details>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="final">
+        <h2>Libere espaço hoje</h2>
+        <p>Comece com 3 dias grátis. Cancele quando quiser.</p>
+        <div class="ctas">
+          <a class="cta" href="https://apps.apple.com/app/id6827730238" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.72-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1-1.74.9-2.75-.86.03-1.91.58-2.53 1.3-.55.64-1.04 1.67-.91 2.66.96.07 1.94-.49 2.54-1.21z"/></svg>
+            <div><small>Baixar na</small><span>App Store</span></div>
+          </a>
+          <a class="cta" href="https://play.google.com/store/apps/details?id=me.joinads.limpi" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D7FE" d="M3.6 2.2c-.3.3-.4.7-.4 1.3v17c0 .6.1 1 .4 1.3l9.5-9.8z"/><path fill="#FFCE00" d="M16.3 15.3l-3.2-3.3 3.2-3.3 3.9 2.2c1.1.6 1.1 1.6 0 2.2z"/><path fill="#FF3A44" d="M16.3 15.3l-3.2-3.3-9.5 9.8c.4.4.9.4 1.6.1z"/><path fill="#00F076" d="M16.3 8.7L5.2 2.1c-.7-.3-1.2-.3-1.6.1l9.5 9.8z"/></svg>
+            <div><small>Disponível no</small><span>Google Play</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="legal">Limpi é um app da DC Serviços Empresariais LTDA. · <a href="https://douglas720.github.io/limpi-site/privacidade.html" rel="noopener">Política de Privacidade</a> · <a href="https://douglas720.github.io/limpi-site/termos.html" rel="noopener">Termos de Uso</a><br>Apple, iPhone e App Store são marcas da Apple Inc. Google Play e Android são marcas da Google LLC.</p>
+
+  <div class="sticky">
+    <a class="cta" href="https://apps.apple.com/app/id6827730238" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.72-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1-1.74.9-2.75-.86.03-1.91.58-2.53 1.3-.55.64-1.04 1.67-.91 2.66.96.07 1.94-.49 2.54-1.21z"/></svg><div><small>Baixar na</small><span>App Store</span></div></a>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=me.joinads.limpi" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D7FE" d="M3.6 2.2c-.3.3-.4.7-.4 1.3v17c0 .6.1 1 .4 1.3l9.5-9.8z"/><path fill="#FFCE00" d="M16.3 15.3l-3.2-3.3 3.2-3.3 3.9 2.2c1.1.6 1.1 1.6 0 2.2z"/><path fill="#FF3A44" d="M16.3 15.3l-3.2-3.3-9.5 9.8c.4.4.9.4 1.6.1z"/><path fill="#00F076" d="M16.3 8.7L5.2 2.1c-.7-.3-1.2-.3-1.6.1l9.5 9.8z"/></svg><div><small>Disponível no</small><span>Google Play</span></div></a>
+  </div>
+</div>
